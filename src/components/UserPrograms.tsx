@@ -14,18 +14,16 @@ import { USER_PROGRAMS } from "@/constants";
 
 const UserPrograms = () => {
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section className="py-10 lg:py-20 relative">
+      <div className="container mx-auto px-5 lg:px-14">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border mb-6">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Success Stories</span>
+            <Sparkles className="w-8 h-8 text-primary" />
+            <span className="text-2xl font-medium">Success Stories</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Real Results from <span className="text-primary">Real People</span>
-          </h2>
+
           
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Discover how our AI has helped thousands of users achieve their fitness goals with personalized programs tailored to their unique needs and preferences.
@@ -33,11 +31,11 @@ const UserPrograms = () => {
         </div>
 
         {/* Program Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-16">
           {USER_PROGRAMS.map((program, index) => (
             <Card
               key={program.id}
-              className="glass hover:shadow-glow transition-all duration-300 group animate-slide-up"
+              className="glass hover:shadow-glow  group animate-slide-up hover:scale-105 hover:shadow-lg hover:shadow-blue-300/30 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="pb-4">
@@ -125,8 +123,8 @@ const UserPrograms = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center">
-          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
+        <div className="text-center ">
+          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto hover:scale-105 hover:shadow-lg hover:shadow-blue-300/30 transition-all duration-300">
             <h3 className="text-2xl font-bold mb-4">
               Ready to Start Your <span className="text-primary">Transformation</span>?
             </h3>

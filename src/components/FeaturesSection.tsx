@@ -47,8 +47,8 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section className="py-10 md:py-16 relative">
+      <div className="container mx-auto px-5 lg:px-14">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Why Choose <span className="text-primary">FitFlow AI</span>?
@@ -58,11 +58,11 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="glass rounded-2xl p-6 hover:shadow-glow transition-all duration-300 group animate-slide-up"
+              className="glass rounded-2xl p-6 hover:shadow-glow  group animate-slide-up hover:scale-105 hover:shadow-lg hover:shadow-blue-300/30 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${feature.bgColor} mb-4 group-hover:scale-110 transition-transform duration-300`}>

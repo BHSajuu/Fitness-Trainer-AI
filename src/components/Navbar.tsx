@@ -42,7 +42,7 @@ const Navbar = () => {
     if (isSignedIn) {
       return (
         <>
-          <div className="flex flex-col gap-4 md:hidden">
+          <div className="flex flex-col gap-4 md:hidden border-b border-border">
             <Link href="/" className="flex items-center gap-2 text-sm hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10" onClick={closeMobileMenu}>
               <HomeIcon size={18} />
               <span>Home</span>
