@@ -79,12 +79,12 @@ const GenerateProgramPage = () => {
     };
 
     const handleSpeechStart = () => {
-      console.log("AI started Speaking");
+      // console.log("AI started Speaking");
       setIsSpeaking(true);
     };
 
     const handleSpeechEnd = () => {
-      console.log("AI stopped Speaking");
+      // console.log("AI stopped Speaking");
       setIsSpeaking(false);
     };
     const handleMessage = (message: any) => {
@@ -153,10 +153,10 @@ const GenerateProgramPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen text-foreground overflow-hidden  pb-6 md:pt-24">
+    <div className="pb-10 flex flex-col py-6 min-h-screen text-foreground overflow-hidden   md:pt-10">
       <div className="container mx-auto px-4 h-full max-w-5xl">
         {/* Title */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <h1 className="text-3xl font-bold font-mono">
             <span>Generate Your </span>
             <span className="text-primary uppercase">Fitness Program</span>
@@ -167,9 +167,9 @@ const GenerateProgramPage = () => {
         </div>
 
         {/* VIDEO CALL AREA */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 mb-8">
           {/* AI ASSISTANT CARD */}
-          <Card className="bg-card/90 backdrop-blur-sm border border-border overflow-hidden relative">
+          <Card className={`${isSpeaking ? "scale-105 shadow-2xl shadow-blue-300/30" : ""}  bg-card/90 backdrop-blur-sm border border-border overflow-hidden relative`}>
             <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
               {/* AI VOICE ANIMATION */}
               <div
@@ -202,14 +202,14 @@ const GenerateProgramPage = () => {
                 <div className="relative w-full h-full rounded-full bg-card flex items-center justify-center border border-border overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-secondary/10"></div>
                   <img
-                    src="/ai-avatar.png"
+                    src="/ai-avatar.jpg"
                     alt="AI Assistant"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
 
-              <h2 className="text-xl font-bold text-foreground">CodeFlex AI</h2>
+              <h2 className="text-xl font-bold text-foreground">Jarvis</h2>
               <p className="text-sm text-muted-foreground mt-1">Fitness & Diet Coach</p>
 
               {/* SPEAKING INDICATOR */}
@@ -237,7 +237,7 @@ const GenerateProgramPage = () => {
           </Card>
 
           {/* USER CARD */}
-          <Card className={`bg-card/90 backdrop-blur-sm border overflow-hidden relative`}>
+          <Card className={`${isSpeaking ? "scale-105 shadow-2xl shadow-blue-300/30" : ""}  bg-card/90 backdrop-blur-sm border overflow-hidden relative`}>
             <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
               {/* User Image */}
               <div className="relative size-32 mb-4">
@@ -292,7 +292,7 @@ const GenerateProgramPage = () => {
         )}
 
         {/* CALL CONTROLS */}
-        <div className="w-full flex justify-center gap-4">
+        <div className="w-full flex justify-center gap-4 pt-3">
           <Button
             className={`w-40 text-xl rounded-3xl ${callActive
               ? "bg-destructive hover:bg-destructive/90"
