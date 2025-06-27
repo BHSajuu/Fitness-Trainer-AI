@@ -6,10 +6,9 @@ import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
 import ProfileHeader from "@/components/ProfileHeader";
 import NoFitnessPlan from "@/components/NoFitnessPlan";
-import CornerElements from "@/components/CornerElements";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AppleIcon, CalendarIcon, DumbbellIcon } from "lucide-react";
+import { AppleIcon, CalendarIcon, DumbbellIcon, TrendingUpIcon } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -31,85 +30,100 @@ const ProfilePage = () => {
     : activePlan;
 
   return (
-    <section className="relative z-10  md:pt-12 pb-32 flex-grow container mx-auto px-4">
-      <ProfileHeader user={user} />
+    <div className="min-h-screen py-8">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <ProfileHeader user={user} />
 
-      {allPlans && allPlans?.length > 0 ? (
-        <div className="space-y-8">
-          {/* PLAN SELECTOR */}
-          <div className="relative backdrop-blur-sm border border-border p-6">
-            <CornerElements />
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold tracking-tight">
-                <span className="text-primary">Your</span>{" "}
-                <span className="text-foreground">Fitness Plans</span>
-              </h2>
-              <div className="font-mono text-xs text-muted-foreground">
-                TOTAL: {allPlans.length}
+        {allPlans && allPlans?.length > 0 ? (
+          <div className="space-y-8">
+            {/* Plan Selector */}
+            <div className="glass rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold mb-2">
+                    Your <span className="text-primary">Fitness Plans</span>
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Manage and view all your AI-generated fitness programs
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-2 glass rounded-full">
+                  <TrendingUpIcon className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">{allPlans.length} Plans</span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                {allPlans.map((plan) => (
+                  <Button
+                    key={plan._id}
+                    onClick={() => setSelectedPlanId(plan._id)}
+                    variant={selectedPlanId === plan._id ? "default" : "outline"}
+                    className={`relative ${
+                      selectedPlanId === plan._id
+                        ? "gradient-primary text-white shadow-glow"
+                        : "border-primary/30 hover:bg-primary/10"
+                    }`}
+                  >
+                    {plan.name}
+                    {plan.isActive && (
+                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-secondary rounded-full border-2 border-background animate-pulse" />
+                    )}
+                  </Button>
+                ))}
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {allPlans.map((plan) => (
-                <Button
-                  key={plan._id}
-                  onClick={() => setSelectedPlanId(plan._id)}
-                  className={`text-foreground border hover:text-white ${
-                    selectedPlanId === plan._id
-                      ? "bg-primary/20 text-primary border-primary"
-                      : "bg-transparent border-border hover:border-primary/50"
-                  }`}
-                >
-                  {plan.name}
-                  {plan.isActive && (
-                    <span className="ml-2 bg-green-500/20 text-green-500 text-xs px-2 py-0.5 rounded">
-                      ACTIVE
-                    </span>
+            {/* Plan Details */}
+            {currentPlan && (
+              <div className="glass rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 gradient-primary rounded-xl">
+                    <DumbbellIcon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">
+                      {currentPlan.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {currentPlan.isActive ? "Currently Active Plan" : "Previous Plan"}
+                    </p>
+                  </div>
+                  {currentPlan.isActive && (
+                    <div className="ml-auto px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm font-medium">
+                      Active
+                    </div>
                   )}
-                </Button>
-              ))}
-            </div>
-          </div>
+                </div>
 
-          {/* PLAN DETAILS */}
+                <Tabs defaultValue="workout" className="w-full">
+                  <TabsList className="mb-6 w-full grid grid-cols-2 glass">
+                    <TabsTrigger
+                      value="workout"
+                      className="data-[state=active]:gradient-primary data-[state=active]:text-white"
+                    >
+                      <DumbbellIcon className="mr-2 w-4 h-4" />
+                      Workout Plan
+                    </TabsTrigger>
 
-          {currentPlan && (
-            <div className="relative backdrop-blur-sm border border-border rounded-lg p-6">
-              <CornerElements />
+                    <TabsTrigger
+                      value="diet"
+                      className="data-[state=active]:gradient-secondary data-[state=active]:text-white"
+                    >
+                      <AppleIcon className="mr-2 h-4 w-4" />
+                      Diet Plan
+                    </TabsTrigger>
+                  </TabsList>
 
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                <h3 className="text-lg font-bold">
-                  PLAN: <span className="text-primary">{currentPlan.name}</span>
-                </h3>
-              </div>
-
-              <Tabs defaultValue="workout" className="w-full">
-                <TabsList className="mb-6 w-full grid grid-cols-2 bg-cyber-terminal-bg border">
-                  <TabsTrigger
-                    value="workout"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <DumbbellIcon className="mr-2 size-4" />
-                    Workout Plan
-                  </TabsTrigger>
-
-                  <TabsTrigger
-                    value="diet"
-                    className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
-                  >
-                    <AppleIcon className="mr-2 h-4 w-4" />
-                    Diet Plan
-                  </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="workout">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 mb-4">
-                      <CalendarIcon className="h-4 w-4 text-primary" />
-                      <span className="font-mono text-sm text-muted-foreground">
-                        SCHEDULE: {currentPlan.workoutPlan.schedule.join(", ")}
-                      </span>
+                  <TabsContent value="workout" className="space-y-6">
+                    <div className="flex items-center gap-3 p-4 glass rounded-xl">
+                      <CalendarIcon className="h-5 w-5 text-primary" />
+                      <div>
+                        <div className="font-medium">Weekly Schedule</div>
+                        <div className="text-sm text-muted-foreground">
+                          {currentPlan.workoutPlan.schedule.join(" • ")}
+                        </div>
+                      </div>
                     </div>
 
                     <Accordion type="multiple" className="space-y-4">
@@ -117,39 +131,42 @@ const ProfilePage = () => {
                         <AccordionItem
                           key={index}
                           value={exerciseDay.day}
-                          className="border rounded-lg overflow-hidden"
+                          className="glass rounded-xl overflow-hidden border-0"
                         >
-                          <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-primary/10 font-mono">
+                          <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-primary/5">
                             <div className="flex justify-between w-full items-center">
-                              <span className="text-primary">{exerciseDay.day}</span>
-                              <div className="text-xs text-muted-foreground">
-                                {exerciseDay.routines.length} EXERCISES
+                              <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 bg-primary rounded-full" />
+                                <span className="font-semibold">{exerciseDay.day}</span>
+                              </div>
+                              <div className="text-sm text-muted-foreground">
+                                {exerciseDay.routines.length} exercises
                               </div>
                             </div>
                           </AccordionTrigger>
 
-                          <AccordionContent className="pb-4 px-4">
-                            <div className="space-y-3 mt-2">
+                          <AccordionContent className="px-6 pb-4">
+                            <div className="space-y-4 mt-2">
                               {exerciseDay.routines.map((routine, routineIndex) => (
                                 <div
                                   key={routineIndex}
-                                  className="border border-border rounded p-3 bg-background/50"
+                                  className="p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-xl border border-primary/10"
                                 >
                                   <div className="flex justify-between items-start mb-2">
                                     <h4 className="font-semibold text-foreground">
                                       {routine.name}
                                     </h4>
                                     <div className="flex items-center gap-2">
-                                      <div className="px-2 py-1 rounded bg-primary/20 text-primary text-xs font-mono">
-                                        {routine.sets} SETS
+                                      <div className="px-2 py-1 rounded-lg bg-primary/20 text-primary text-xs font-medium">
+                                        {routine.sets} sets
                                       </div>
-                                      <div className="px-2 py-1 rounded bg-secondary/20 text-secondary text-xs font-mono">
-                                        {routine.reps} REPS
+                                      <div className="px-2 py-1 rounded-lg bg-secondary/20 text-secondary text-xs font-medium">
+                                        {routine.reps} reps
                                       </div>
                                     </div>
                                   </div>
                                   {routine.description && (
-                                    <p className="text-sm text-muted-foreground mt-1">
+                                    <p className="text-sm text-muted-foreground">
                                       {routine.description}
                                     </p>
                                   )}
@@ -160,58 +177,61 @@ const ProfilePage = () => {
                         </AccordionItem>
                       ))}
                     </Accordion>
-                  </div>
-                </TabsContent>
+                  </TabsContent>
 
-                <TabsContent value="diet">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-mono text-sm text-muted-foreground">
-                        DAILY CALORIE TARGET
-                      </span>
-                      <div className="font-mono text-xl text-primary">
-                        {currentPlan.dietPlan.dailyCalories} KCAL
+                  <TabsContent value="diet" className="space-y-6">
+                    <div className="flex items-center justify-between p-4 glass rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-secondary/20 rounded-lg">
+                          <TrendingUpIcon className="w-4 h-4 text-secondary" />
+                        </div>
+                        <div>
+                          <div className="font-medium">Daily Calorie Target</div>
+                          <div className="text-sm text-muted-foreground">Optimized for your goals</div>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-secondary">
+                        {currentPlan.dietPlan.dailyCalories} kcal
                       </div>
                     </div>
 
-                    <div className="h-px w-full bg-border my-4"></div>
-
-                    <div className="space-y-4">
+                    <div className="grid gap-4">
                       {currentPlan.dietPlan.meals.map((meal, index) => (
                         <div
                           key={index}
-                          className="border border-border rounded-lg overflow-hidden p-4"
+                          className="glass rounded-xl p-4"
                         >
-                          <div className="flex items-center gap-2 mb-3">
-                            <div className="w-2 h-2 rounded-full bg-primary"></div>
-                            <h4 className="font-mono text-primary">{meal.name}</h4>
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-accent/20 rounded-lg">
+                              <AppleIcon className="w-4 h-4 text-accent" />
+                            </div>
+                            <h4 className="font-semibold">{meal.name}</h4>
                           </div>
-                          <ul className="space-y-2">
+                          <div className="grid gap-2">
                             {meal.foods.map((food, foodIndex) => (
-                              <li
+                              <div
                                 key={foodIndex}
-                                className="flex items-center gap-2 text-sm text-muted-foreground"
+                                className="flex items-center gap-3 p-2 rounded-lg bg-gradient-to-r from-accent/5 to-transparent"
                               >
-                                <span className="text-xs text-primary font-mono">
-                                  {String(foodIndex + 1).padStart(2, "0")}
-                                </span>
-                                {food}
-                              </li>
+                                <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                                <span className="text-sm">{food}</span>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-          )}
-        </div>
-      ) : (
-        <NoFitnessPlan />
-      )}
-    </section>
+                  </TabsContent>
+                </Tabs>
+              </div>
+            )}
+          </div>
+        ) : (
+          <NoFitnessPlan />
+        )}
+      </div>
+    </div>
   );
 };
+
 export default ProfilePage;

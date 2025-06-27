@@ -45,126 +45,96 @@
 
 :root {
   /* Base Variables */
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 
-  /* Cyberpunk Theme Colors */
-  --cyber-black: #000000;
-  --cyber-dark: #0a0c14;
-  --cyber-blue-bright: #18cef2;
-  --cyber-blue: #1089bd;
-  --cyber-blue-dark: #0b4a7d;
-  --cyber-blue-glow: #38bdf8;
-  --cyber-accent: #0ff4;
+  /* Modern Fitness Theme Colors */
+  --fitness-dark: #0f0f23;
+  --fitness-darker: #08081a;
+  --fitness-primary: #6366f1;
+  --fitness-primary-light: #818cf8;
+  --fitness-primary-dark: #4f46e5;
+  --fitness-secondary: #10b981;
+  --fitness-accent: #f59e0b;
+  --fitness-surface: #1a1a2e;
+  --fitness-surface-light: #16213e;
 
   /* Background */
-  --background: var(--cyber-dark);
-  --foreground: #f2f2f2;
+  --background: var(--fitness-dark);
+  --foreground: #f8fafc;
 
   /* Card and popover elements */
-  --card: #111827;
-  --card-foreground: #f2f2f2;
-  --popover: #111827;
-  --popover-foreground: #f2f2f2;
+  --card: var(--fitness-surface);
+  --card-foreground: #f8fafc;
+  --popover: var(--fitness-surface);
+  --popover-foreground: #f8fafc;
 
-  /* Primary - Main blue */
-  --primary: var(--cyber-blue-bright);
-  --primary-foreground: var(--cyber-dark);
+  /* Primary - Modern indigo */
+  --primary: var(--fitness-primary);
+  --primary-foreground: #ffffff;
 
-  /* Secondary - Darker blue */
-  --secondary: var(--cyber-blue);
+  /* Secondary - Emerald green */
+  --secondary: var(--fitness-secondary);
   --secondary-foreground: #ffffff;
 
-  /* Accent - Light blue with glow */
-  --accent: var(--cyber-blue-glow);
-  --accent-foreground: var(--cyber-dark);
+  /* Accent - Amber */
+  --accent: var(--fitness-accent);
+  --accent-foreground: var(--fitness-dark);
 
   /* Muted elements */
-  --muted: #1e293b;
+  --muted: var(--fitness-surface-light);
   --muted-foreground: #94a3b8;
 
   /* System colors */
   --destructive: #ef4444;
-  --border: rgba(24, 206, 242, 0.2);
-  --input: rgba(24, 206, 242, 0.2);
-  --ring: var(--cyber-blue);
+  --border: rgba(99, 102, 241, 0.15);
+  --input: rgba(99, 102, 241, 0.1);
+  --ring: var(--fitness-primary);
 
-  /* Chart colors - cyberpunk theme */
-  --chart-1: var(--cyber-blue-bright);
-  --chart-2: #3b82f6;
-  --chart-3: var(--cyber-blue);
-  --chart-4: #06b6d4;
-  --chart-5: #0284c7;
+  /* Chart colors */
+  --chart-1: var(--fitness-primary);
+  --chart-2: var(--fitness-secondary);
+  --chart-3: var(--fitness-accent);
+  --chart-4: #8b5cf6;
+  --chart-5: #06b6d4;
 
   /* Sidebar colors */
-  --sidebar: var(--cyber-dark);
-  --sidebar-foreground: #f2f2f2;
-  --sidebar-primary: var(--cyber-blue-bright);
-  --sidebar-primary-foreground: var(--cyber-dark);
-  --sidebar-accent: var(--cyber-blue);
+  --sidebar: var(--fitness-surface);
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: var(--fitness-primary);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--fitness-secondary);
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(24, 206, 242, 0.2);
-  --sidebar-ring: var(--cyber-blue);
+  --sidebar-border: rgba(99, 102, 241, 0.15);
+  --sidebar-ring: var(--fitness-primary);
 
-  /* Custom Cyberpunk UI Variables */
-  --cyber-grid-color: rgba(24, 206, 242, 0.05);
-  --cyber-glow-primary: rgba(24, 206, 242, 0.2);
-  --cyber-glow-strong: rgba(24, 206, 242, 0.5);
-  --cyber-line-color: rgba(24, 206, 242, 0.3);
-  --cyber-terminal-bg: rgba(0, 0, 0, 0.7);
-  --cyber-text-bright: #ffffff;
-  --cyber-text-muted: rgba(242, 242, 242, 0.7);
-  --cyber-text-dim: rgba(242, 242, 242, 0.5);
+  /* Custom Variables */
+  --gradient-primary: linear-gradient(135deg, var(--fitness-primary) 0%, var(--fitness-primary-light) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--fitness-secondary) 0%, #34d399 100%);
+  --gradient-surface: linear-gradient(135deg, var(--fitness-surface) 0%, var(--fitness-surface-light) 100%);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .dark {
-  /* Background */
-  --background: var(--cyber-dark);
-  --foreground: #f2f2f2;
-
-  /* Card and popover elements */
-  --card: #111827;
-  --card-foreground: #f2f2f2;
-  --popover: #111827;
-  --popover-foreground: #f2f2f2;
-
-  /* Primary - Main blue */
-  --primary: var(--cyber-blue-bright);
-  --primary-foreground: var(--cyber-dark);
-
-  /* Secondary - Darker blue */
-  --secondary: var(--cyber-blue);
+  /* Same as root for dark theme */
+  --background: var(--fitness-dark);
+  --foreground: #f8fafc;
+  --card: var(--fitness-surface);
+  --card-foreground: #f8fafc;
+  --popover: var(--fitness-surface);
+  --popover-foreground: #f8fafc;
+  --primary: var(--fitness-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--fitness-secondary);
   --secondary-foreground: #ffffff;
-
-  /* Accent - Light blue with glow */
-  --accent: var(--cyber-blue-glow);
-  --accent-foreground: var(--cyber-dark);
-
-  /* Muted elements */
-  --muted: #1e293b;
+  --accent: var(--fitness-accent);
+  --accent-foreground: var(--fitness-dark);
+  --muted: var(--fitness-surface-light);
   --muted-foreground: #94a3b8;
-
-  /* System colors */
   --destructive: #ef4444;
-  --border: rgba(24, 206, 242, 0.2);
-  --input: rgba(24, 206, 242, 0.2);
-  --ring: var(--cyber-blue);
-
-  /* Chart colors - cyberpunk theme */
-  --chart-1: var(--cyber-blue-bright);
-  --chart-2: #3b82f6;
-  --chart-3: var(--cyber-blue);
-  --chart-4: #06b6d4;
-  --chart-5: #0284c7;
-
-  /* Sidebar colors */
-  --sidebar: var(--cyber-dark);
-  --sidebar-foreground: #f2f2f2;
-  --sidebar-primary: var(--cyber-blue-bright);
-  --sidebar-primary-foreground: var(--cyber-dark);
-  --sidebar-accent: var(--cyber-blue);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(24, 206, 242, 0.2);
-  --sidebar-ring: var(--cyber-blue);
+  --border: rgba(99, 102, 241, 0.15);
+  --input: rgba(99, 102, 241, 0.1);
+  --ring: var(--fitness-primary);
 }
 
 @layer base {
@@ -173,41 +143,108 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
   }
-  /* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 }
 
-@keyframes scanline {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-/* TODO: EXPLAIN THIS BC U PROMISED JUST IN THE FIRST SECTION */
-@keyframes slow-spin {
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slide-up {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.animate-scanline {
-  animation: scanline 8s linear infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.animate-slow-spin {
-  animation: slow-spin 12s linear infinite;
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+/* Utility classes */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.gradient-surface {
+  background: var(--gradient-surface);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--fitness-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fitness-primary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fitness-primary-light);
+}
+
+/* Sound wave animation for generate program page */
 @keyframes sound-wave {
   0% {
     height: 10%;
@@ -235,4 +272,31 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Scanline animation for generate program page */
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 12s linear infinite;
 }
