@@ -42,7 +42,7 @@ const Navbar = () => {
     if (isSignedIn) {
       return (
         <>
-          <div className="flex flex-col gap-4 md:hidden border-b border-border">
+          <div className="flex flex-col gap-4 md:hidden ">
             <Link href="/" className="flex items-center gap-2 text-sm hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10" onClick={closeMobileMenu}>
               <HomeIcon size={18} />
               <span>Home</span>
@@ -119,7 +119,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`border-b border-slate-700 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled ? 'glass shadow-soft' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 py-4">
