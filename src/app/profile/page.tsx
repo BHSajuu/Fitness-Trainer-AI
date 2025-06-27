@@ -96,19 +96,19 @@ const ProfilePage = () => {
                   )}
                 </div>
 
-                <Tabs defaultValue="workout" className="w-full">
-                  <TabsList className="mb-6 w-full grid grid-cols-2 glass">
+                <Tabs defaultValue="workout" className="w-full  ">
+                  <TabsList className="mb-6 w-full grid grid-cols-2 glass ">
                     <TabsTrigger
                       value="workout"
-                      className="data-[state=active]:gradient-primary data-[state=active]:text-white"
+                      className="-m-1 data-[state=active]:gradient-primary data-[state=active]:text-white"
                     >
-                      <DumbbellIcon className="mr-2 w-4 h-4" />
+                      <DumbbellIcon className="mr-2 w-4 h-4 " />
                       Workout Plan
                     </TabsTrigger>
 
                     <TabsTrigger
                       value="diet"
-                      className="data-[state=active]:gradient-secondary data-[state=active]:text-white"
+                      className="-m-1 data-[state=active]:gradient-secondary data-[state=active]:text-white"
                     >
                       <AppleIcon className="mr-2 h-4 w-4" />
                       Diet Plan
