@@ -4,6 +4,7 @@ import "./globals.css";
 import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,16 @@ export default function RootLayout({
           <Navbar />
           <main className="pt-20">{children}</main>
           <Footer />
+           <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              borderRadius: "8px",
+              background: "#C0C9EE",
+              color: "#090040",
+            },
+          }}
+        />
         </body>
       </html>
     </ConvexClerkProvider>

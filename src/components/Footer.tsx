@@ -3,6 +3,7 @@
 import { X, ZapIcon } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Footer = () => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -61,7 +62,8 @@ const Footer = () => {
               </Link>
 
               <Link
-                href="/help"
+                href="/contact"
+                onClick={() => toast.success("Redirecting to contact page...")}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Help
