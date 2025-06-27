@@ -27,17 +27,18 @@ const Footer = () => {
           {/* Links */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-2 text-sm">
             <Link
-              href="/about"
+              href="/"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              About
+              Home
             </Link>
             <Link
-              href="/terms"
+              href="/profile"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Terms
+              Profile
             </Link>
+           
             <Link
               href="/privacy"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -45,22 +46,23 @@ const Footer = () => {
               Privacy
             </Link>
             <Link
-              href="/contact"
+              href="/generate-program"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Contact
+              Generate Program
             </Link>
-            <Link
-              href="/blog"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              Blog
-            </Link>
+           
             <Link
               href="/help"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               Help
+            </Link>
+              <Link
+              href="/terms"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Terms
             </Link>
           </div>
 
