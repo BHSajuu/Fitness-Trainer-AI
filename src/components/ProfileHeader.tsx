@@ -1,5 +1,5 @@
 import { UserResource } from "@clerk/types";
-import { CalendarIcon, MapPinIcon, MailIcon } from "lucide-react";
+import { CalendarIcon, MailIcon } from "lucide-react";
 
 const ProfileHeader = ({ user }: { user: UserResource | null | undefined }) => {
   if (!user) return null;

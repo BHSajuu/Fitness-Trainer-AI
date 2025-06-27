@@ -14,7 +14,7 @@ const contactFormSchema = z.object({
 });
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-export function Contact() {
+ function Contact() {
   const [isSending, setIsSending] = useState(false);
   const {
     register,

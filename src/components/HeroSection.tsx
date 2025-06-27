@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon, PlayIcon, SparklesIcon } from "lucide-react";
+import { ArrowRightIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
-import TerminalOverlay from "./TerminalOverlay";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="container mx-auto px-5 md:px-16 pt-7 pb-8 md:pb-20">
+      <div className="container mx-auto px-5 md:px-24 pt-7 pb-8 md:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8 animate-slide-up">
@@ -88,10 +87,8 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute hidden md:block -top-4 -right-4 w-24 h-24 border-2 border-primary/30 rounded-full animate-slow-spin" />
-              <div className="absolute hidden md:block -bottom-4 -left-4 w-16 h-16 border-2 border-secondary/30 rounded-full animate-slow-spin" style={{ animationDirection: 'reverse' }} />
+          
+             
             </div>
           </div>
         </div>
