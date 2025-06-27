@@ -66,7 +66,7 @@ const Footer = () => {
                 onClick={() => toast.success("Redirecting to contact page...")}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Help
+                Contact
               </Link>
 
               <button
