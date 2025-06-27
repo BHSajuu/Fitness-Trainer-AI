@@ -1,6 +1,6 @@
 "use client";
 
-import { ZapIcon } from "lucide-react";
+import { X, ZapIcon } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 
@@ -86,13 +86,13 @@ const Footer = () => {
 
       {/* Privacy Modal */}
       {showPrivacyModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900/50 z-50">
           <div className="bg-background rounded-2xl p-6 w-full max-w-lg relative">
             <button
               onClick={() => setShowPrivacyModal(false)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-primary"
             >
-              &times;
+              <X />
             </button>
             <h2 className="text-xl font-semibold mb-4">Privacy Policy</h2>
             <div className="prose max-w-none text-sm text-muted-foreground">
@@ -111,13 +111,13 @@ const Footer = () => {
 
       {/* Terms Modal */}
       {showTermsModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50  z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900/50 z-50">
           <div className="bg-background rounded-2xl p-6 w-full max-w-lg relative">
             <button
               onClick={() => setShowTermsModal(false)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-primary"
             >
-              &times;
+              <X/>
             </button>
             <h2 className="text-xl font-semibold mb-4">Terms of Service</h2>
             <div className="prose max-w-none text-sm text-muted-foreground">
@@ -126,7 +126,6 @@ const Footer = () => {
                 Unauthorized use is prohibited. We reserve the right to modify
                 these terms at any time.
               </p>
-             
             </div>
           </div>
         </div>
