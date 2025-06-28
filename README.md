@@ -24,3 +24,13 @@
   - Only the latest program is active at a time.
 - 📱 Responsive Design
   - UI looks good on phones, tablets, and desktops.
+
+
+---
+## Demo link:- https://fitness-trainer-ai.vercel.app/
+
+
+---
+
+## Feature that will implemente in future :
+   1. Porgress Tracker section where user can check thier daily as well as monthly progress .
