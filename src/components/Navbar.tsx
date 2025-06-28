@@ -55,7 +55,7 @@ const Navbar = () => {
               <UserIcon size={18} />
               <span>Profile</span>
             </Link>
-            
+
             <div className="flex justify-center mt-4 pt-4 border-t border-border">
               <UserButton />
             </div>
@@ -77,9 +77,9 @@ const Navbar = () => {
                 <span>Profile</span>
               </Link>
             </nav>
-            
+
             <div className="w-px h-6 bg-border" />
-            
+
             <UserButton />
           </div>
         </>
@@ -119,9 +119,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`px-10 border-b border-slate-700 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'glass shadow-soft' : 'bg-transparent'
-    }`}>
+    <header className={`md:px-10 border-b border-slate-700 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass shadow-soft' : 'bg-transparent'
+      }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -135,17 +134,24 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile Menu Button */}
-          <button
+          {mobileMenuOpen ? <button
             className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <X size={24} style={{ color: 'white' }} />
           </button>
-
+            :
+            <button
+              className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              <Menu size={24} />
+            </button>
+          }
           {/* Mobile Menu Overlay */}
           {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-background/95 backdrop-blur-sm md:hidden">
+            <div className="fixed inset-0 bg-gray-950/50  md:hidden">
               <div className="absolute top-20 right-4 left-4">
                 <div className="glass rounded-2xl p-6 shadow-soft">
                   {renderAuthButtons()}
