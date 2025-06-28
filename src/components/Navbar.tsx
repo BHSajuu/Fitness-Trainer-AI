@@ -134,13 +134,7 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile Menu Button */}
-          {mobileMenuOpen ? <button
-            className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <X size={24} style={{ color: 'white' }} />
-          </button>
-            :
+          {!mobileMenuOpen && (
             <button
               className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
               onClick={toggleMobileMenu}
@@ -148,11 +142,18 @@ const Navbar = () => {
             >
               <Menu size={24} />
             </button>
-          }
+          )}
           {/* Mobile Menu Overlay */}
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-gray-950/50  md:hidden">
+              <button
+                  className="absolute md:hidden top-4 right-3 p-2 rounded-lg hover:bg-primary/10 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <X size={30} style={{ color: 'white' }} />
+                </button>
               <div className="absolute top-20 right-4 left-4">
+                
                 <div className="glass rounded-2xl p-6 shadow-soft">
                   {renderAuthButtons()}
                 </div>

@@ -273,7 +273,7 @@ const GenerateProgramPage = () => {
               {messages.map((msg, index) => (
                 <div key={index} className="message-item animate-fadeIn">
                   <div className="font-semibold text-xs text-muted-foreground mb-1">
-                    {msg.role === "assistant" ? "CodeFlex AI" : "You"}:
+                    {msg.role === "assistant" ? "Jarvis" : "You"}:
                   </div>
                   <p className="text-foreground">{msg.content}</p>
                 </div>
