@@ -15,6 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import FeedBackFrom from "@/components/FeedBackFrom";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -229,6 +230,8 @@ const ProfilePage = () => {
         ) : (
           <NoFitnessPlan />
         )}
+
+        <FeedBackFrom/>
       </div>
     </div>
   );

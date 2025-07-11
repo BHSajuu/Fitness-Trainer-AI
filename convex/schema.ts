@@ -43,4 +43,17 @@ export default defineSchema({
   })
     .index("by_user_id", ["userId"])
     .index("by_active", ["isActive"]),
+
+  feedback: defineTable({
+     userId : v.string(),
+     name : v.string(),
+     rating: v.number(),
+     profilePic:v.optional(v.string()),
+     fitness_goal: v.string(),
+     age: v.string(),
+     workout_days: v.number(),
+     injuries: v.optional(v.string()),
+     description: v.string(),
+  }).index("by_user_id",["userId"])
+    .index("by_rating",["rating"]),
 });

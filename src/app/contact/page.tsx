@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import toast from "react-hot-toast";
+import ClickSpark from "@/components/Animations/ClickSpark/ClickSpark";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -14,7 +15,7 @@ const contactFormSchema = z.object({
 });
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
- function Contact() {
+function Contact() {
   const [isSending, setIsSending] = useState(false);
   const {
     register,
@@ -62,83 +63,95 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
   };
 
   return (
-    <section id="contact" className="pt-12 pb-32 bg-muted/20">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <div className="glass rounded-2xl p-6 mb-8 text-center">
-          <h2 className="text-4xl font-extrabold mb-2">
-            <span className="text-primary">Share Your Queries</span>
-          </h2>
-          <p className="text-muted-foreground">
-            Questions, feedback, or just want to say hello? I’d love to hear from you!
-          </p>
+
+    <ClickSpark
+      sparkColor='#fff'
+      sparkSize={10}
+      sparkRadius={15}
+      sparkCount={8}
+      duration={400}
+    >
+      <section id="contact" className="pt-12 pb-32 bg-muted/20">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="glass rounded-2xl p-6 mb-8 text-center">
+            <h2 className="text-4xl font-extrabold mb-2">
+              <span className="text-primary">Share Your Queries</span>
+            </h2>
+            <p className="text-muted-foreground">
+              Questions, feedback, or just want to say hello? I’d love to hear from you!
+            </p>
+          </div>
+          <div className="glass rounded-2xl p-6 shadow-lg">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <InputField
+                id="name"
+                label="Name"
+                icon={<UserIcon className="w-5 h-5 text-muted-foreground" />}
+                placeholder="Your name"
+                error={errors.name}
+                register={register("name")}
+              />
+
+              <InputField
+                id="email"
+                label="Email"
+                icon={<MailIcon className="w-5 h-5 text-muted-foreground" />}
+                placeholder="you@example.com"
+                type="email"
+                error={errors.email}
+                register={register("email")}
+              />
+
+              <TextAreaField
+                id="message"
+                label="Message"
+                icon={<MessageSquareIcon className="w-5 h-5 text-muted-foreground" />}
+                placeholder="Write your message"
+                error={errors.message}
+                register={register("message")}
+              />
+
+              <button
+                type="submit"
+                disabled={isSending}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSending ? (
+                  <>
+                    <svg
+                      className="w-5 h-5 animate-spin"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <MailIcon className="w-5 h-5" /> Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="glass rounded-2xl p-6 shadow-lg">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <InputField
-              id="name"
-              label="Name"
-              icon={<UserIcon className="w-5 h-5 text-muted-foreground" />}
-              placeholder="Your name"
-              error={errors.name}
-              register={register("name")}
-            />
+      </section>
+    </ClickSpark>
 
-            <InputField
-              id="email"
-              label="Email"
-              icon={<MailIcon className="w-5 h-5 text-muted-foreground" />}
-              placeholder="you@example.com"
-              type="email"
-              error={errors.email}
-              register={register("email")}
-            />
 
-            <TextAreaField
-              id="message"
-              label="Message"
-              icon={<MessageSquareIcon className="w-5 h-5 text-muted-foreground" />}
-              placeholder="Write your message"
-              error={errors.message}
-              register={register("message")}
-            />
 
-            <button
-              type="submit"
-              disabled={isSending}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl gradient-primary text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSending ? (
-                <>
-                  <svg
-                    className="w-5 h-5 animate-spin"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                    ></path>
-                  </svg>
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <MailIcon className="w-5 h-5" /> Send Message
-                </>
-              )}
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
   );
 }
 

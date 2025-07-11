@@ -5,7 +5,7 @@ import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
-import {  shadesOfPurple } from '@clerk/themes'
+
 
 
 const geistSans = Geist({
