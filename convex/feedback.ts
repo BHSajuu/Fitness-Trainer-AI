@@ -62,3 +62,108 @@ export const getFeedbacks = query({
         return feedbacks;
       }
 })
+
+
+export const deleteFeedbackById = mutation({
+  args: {
+    feedbackId: v.id("feedback"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("You must be logged in to delete feedback");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id")
+      .filter((q) => q.eq(q.field("clerkId"), identity.subject))
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Get the feedback to verify ownership
+    const feedback = await ctx.db.get(args.feedbackId);
+    if (!feedback) {
+      throw new Error("Feedback not found");
+    }
+
+    // Check if the user owns this feedback
+    if (feedback.userId !== user._id) {
+      throw new Error("You can only delete your own feedback");
+    }
+
+    // Delete the feedback
+    await ctx.db.delete(args.feedbackId);
+  },
+});
+
+
+export const updateFeedbackById = mutation({
+  args: {
+    feedbackId: v.id("feedback"),
+    rating: v.number(),
+    description: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("You must be logged in to edit feedback");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id")
+      .filter((q) => q.eq(q.field("clerkId"), identity.subject))
+      .first();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+   
+    const feedback = await ctx.db.get(args.feedbackId);
+    if (!feedback) {
+      throw new Error("Feedback not found");
+    }
+
+   
+    if (feedback.userId !== user._id) {
+      throw new Error("You can only edit your own feedback");
+    }
+
+    
+    await ctx.db.patch(args.feedbackId, {
+      rating: args.rating,
+      description: args.description,
+    });
+  },
+});
+
+export const getUserFeedbacks = query({
+  args: {
+    userId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id")
+      .filter((q) => q.eq(q.field("clerkId"), args.userId))
+      .first();
+
+    if (!user) {
+      return [];
+    }
+
+    const feedbacks = await ctx.db
+      .query("feedback")
+      .withIndex("by_user_id")
+      .filter((q) => q.eq(q.field("userId"), user._id))
+      .order("desc")
+      .collect();
+
+    return feedbacks;
+  },
+});
