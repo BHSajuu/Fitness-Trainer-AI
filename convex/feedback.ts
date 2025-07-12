@@ -1,16 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
-export const getFeedbacks = query({
-      handler: async(ctx, args)=>{
-         const  feedbacks =  await ctx.db
-                 .query("feedback")
-                 .withIndex("by_rating")
-                 .order("desc")
-                 .collect();
-        return feedbacks;
-      }
-})
 
 export const createFeedback = mutation({
       args:{
@@ -47,6 +37,7 @@ export const createFeedback = mutation({
         // Extract fitness data from the active plan's userMetadata
         const fitnessData = {
           fitness_goal: activePlan.userMetadata?.fitness_goal || "General Fitness",
+          fitness_level: activePlan.userMetadata?.fitness_level || "Beginner" ,
           age: activePlan.userMetadata?.age || "Not specified",
           workout_days: activePlan.workoutPlan.schedule.length,
           injuries: activePlan.userMetadata?.injuries || "None specified",
@@ -60,5 +51,16 @@ export const createFeedback = mutation({
              name: user.name,
              profilePic: identify.pictureUrl || "",
          })
+      }
+})
+
+export const getFeedbacks = query({
+      handler: async(ctx)=>{
+         const  feedbacks =  await ctx.db
+                 .query("feedback")
+                 .withIndex("by_rating")
+                 .order("desc")
+                 .collect();
+        return feedbacks;
       }
 })

@@ -2,9 +2,8 @@ import { useMutation } from 'convex/react';
 import React, { useState } from 'react'
 import { api } from '../../convex/_generated/api';
 import toast from 'react-hot-toast';
-import { X, Star } from 'lucide-react';
+import {  Star } from 'lucide-react';
 import { Label } from './ui/label';
-import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
 import { useUser } from '@clerk/nextjs';
@@ -18,25 +17,25 @@ function FeedBackFrom() {
 
   const { user } = useUser();
   const userId = user?.id as string;
-  
+
   // Get active plan to check if user has one
   const activePlan = useQuery(api.plans.getActivePlan, userId ? { userId } : "skip");
 
   const createFeedback = useMutation(api.feedback.createFeedback);
 
-  const handleSubmit = async(e: React.FormEvent)=>{
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!activePlan) {
       toast.error("Please create a fitness plan first before submitting feedback.");
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       await createFeedback({
-         rating,
-         description: text,
+        rating,
+        description: text,
       })
       toast.success("Thank you for your feedback!");
       setText("");
@@ -48,7 +47,7 @@ function FeedBackFrom() {
       setIsSubmitting(false);
     }
   }
- 
+
   // Show message if no active plan
   if (userId && activePlan === null) {
     return (
@@ -58,7 +57,7 @@ function FeedBackFrom() {
           <p className='text-muted-foreground mb-4'>
             You need to have an active fitness plan before you can submit feedback.
           </p>
-          <Button 
+          <Button
             className="gradient-primary text-white"
             onClick={() => window.location.href = '/generate-program'}
           >
@@ -68,7 +67,10 @@ function FeedBackFrom() {
       </div>
     );
   }
- 
+
+  const MIN_LENGTH = 15;
+  const MAX_LENGTH = 330;
+
 
   return (
     <div className='glass rounded-2xl p-6 mt-8'>
@@ -93,34 +95,33 @@ function FeedBackFrom() {
       <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
         <div className='space-y-2'>
           <Label className='font-semibold text-foreground'>Rate your experience</Label>
-         <div className='flex items-center  gap-32'>
-             <div className='flex items-center gap-1'>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                type='button'
-                key={star}
-                onClick={() => setRating(star)}
-                onMouseEnter={() => setHoverRating(star)}
-                onMouseLeave={() => setHoverRating(0)}
-                className='p-1 transition-transform hover:scale-110 focus:outline-none'
-              >
-                <Star
-                  className={`w-8 h-8 ${
-                    star <= (hoverRating || rating) 
-                      ? 'text-yellow-500 fill-yellow-500' 
+          <div className='flex items-center  gap-32'>
+            <div className='flex items-center gap-1'>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  type='button'
+                  key={star}
+                  onClick={() => setRating(star)}
+                  onMouseEnter={() => setHoverRating(star)}
+                  onMouseLeave={() => setHoverRating(0)}
+                  className='p-1 transition-transform hover:scale-110 focus:outline-none'
+                >
+                  <Star
+                    className={`w-8 h-8 ${star <= (hoverRating || rating)
+                      ? 'text-yellow-500 fill-yellow-500'
                       : 'text-gray-300 fill-gray-300'
-                  }`}
-                  strokeWidth={1.5}
-                />
-              </button>
-            ))}
+                      }`}
+                    strokeWidth={1.5}
+                  />
+                </button>
+              ))}
+            </div>
+            <div className={`glass p-2 rounded-4xl flex justify-between ${rating < 3 ? "animate-pulse" : "animate-bounce"} text-muted-foreground`}>
+              <span>
+                {["😒Very dissatisfied", "😞Dissatisfied", "🙂Neutral", "😊Satisfied", "🤗Very satisfied"][rating - 1] || ""}
+              </span>
+            </div>
           </div>
-          <div className={`glass p-2 rounded-4xl flex justify-between ${rating < 3 ?"animate-pulse":"animate-bounce"} text-muted-foreground`}>
-            <span>
-               {["😒Very dissatisfied", "😞Dissatisfied", "🙂Neutral", "😊Satisfied", "🤗Very satisfied"][rating - 1] || ""}
-            </span>
-          </div>
-         </div>
         </div>
 
         <div className='space-y-2'>
@@ -131,9 +132,16 @@ function FeedBackFrom() {
             id="feedback-text"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            minLength={MIN_LENGTH}
+            maxLength={MAX_LENGTH}
             placeholder="What did you like? What can we improve? Any features you'd like to see?"
             className='min-h-[150px] bg-background/80'
           />
+
+          <div className="flex justify-end text-sm text-muted-foreground">
+            {text.length} / {MAX_LENGTH} characters
+          </div>
+
         </div>
 
         <Button

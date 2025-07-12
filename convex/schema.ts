@@ -59,6 +59,7 @@ export default defineSchema({
     rating: v.number(),
     profilePic: v.optional(v.string()),
     fitness_goal: v.string(),
+    fitness_level: v.string(),
     age: v.string(),
     workout_days: v.number(),
     injuries: v.optional(v.string()),
