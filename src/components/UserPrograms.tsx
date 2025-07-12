@@ -34,7 +34,7 @@ const UserPrograms = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-16">
-            {[...Array(6)].map((_, index) => (
+            {[...Array(3)].map((_, index) => (
               <SkeletonCard key={index} index={index} />
             ))}
           </div>
@@ -132,8 +132,8 @@ const UserPrograms = () => {
                     </div>
                   </div>
 
-                  <div className="mb-6">
-                    <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border border-primary/20 shadow-sm hover:shadow-md transition-shadow duration-300 group/goal">
+                  <div className="mb-3 lg:mb-5">
+                    <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-2xl bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border border-primary/20 shadow-sm hover:shadow-md transition-shadow duration-300 group/goal">
                       <div className="p-1.5 rounded-full bg-gradient-to-r from-primary to-secondary">
                         <Target className="w-4 h-4 text-white" />
                       </div>
@@ -144,11 +144,11 @@ const UserPrograms = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-6 relative p-6 border-t border-border">
+                  <div className=" pt-4 relative border-t border-border">
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
                     <div className="relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <p className="text-muted-foreground leading-relaxed relative z-10 p-4 group-hover:text-foreground transition-colors duration-300">
+                      <p className="max-w-prose text-justify hyphens-auto text-muted-foreground leading-relaxed relative z-10 p-2 group-hover:text-foreground transition-colors duration-300">
                         "{program.description}"
                       </p>
                     </div>

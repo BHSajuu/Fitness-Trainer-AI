@@ -33,14 +33,12 @@ export const createFeedback = mutation({
           throw new Error("No active plan found. Please create a fitness plan first.");
         }
 
-        // Extract fitness data from the active plan
-        // Extract fitness data from the active plan's userMetadata
+      
         const fitnessData = {
           fitness_goal: activePlan.userMetadata?.fitness_goal || "General Fitness",
-          fitness_level: activePlan.userMetadata?.fitness_level || "Beginner" ,
-          age: activePlan.userMetadata?.age || "Not specified",
+          fitness_level: activePlan.userMetadata?.fitness_level || "" ,
+          age: activePlan.userMetadata?.age || "",
           workout_days: activePlan.workoutPlan.schedule.length,
-          injuries: activePlan.userMetadata?.injuries || "None specified",
         };
 
          await ctx.db.insert("feedback",{

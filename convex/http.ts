@@ -254,12 +254,8 @@ http.route({
         // Store additional user data for feedback purposes
         userMetadata: {
           age,
-          height,
-          weight,
-          injuries,
           fitness_goal,
           fitness_level,
-          dietary_restrictions,
         },
       });
 

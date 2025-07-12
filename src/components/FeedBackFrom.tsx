@@ -53,7 +53,7 @@ function FeedBackFrom() {
     return (
       <div className='glass rounded-2xl p-6 mt-8'>
         <div className='text-center'>
-          <h2 className='text-2xl font-bold mb-2'>Create a Plan First</h2>
+          <h2 className='text-2xl font-bold mb-2'>Share Your Experience</h2>
           <p className='text-muted-foreground mb-4'>
             You need to have an active fitness plan before you can submit feedback.
           </p>

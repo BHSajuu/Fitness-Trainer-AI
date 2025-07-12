@@ -16,11 +16,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import FeedBackFrom from "@/components/FeedBackFrom";
+import ProfilePageSkeleton from "@/components/ProfilePageSkeleton";
 
 const ProfilePage = () => {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
+  
+ 
   const userId = user?.id as string;
-
+ 
   const allPlans = useQuery(api.plans.getUserPlans, { userId });
   const [selectedPlanId, setSelectedPlanId] = useState<null | string>(null);
 
@@ -30,6 +33,13 @@ const ProfilePage = () => {
     ? allPlans?.find((plan) => plan._id === selectedPlanId)
     : activePlan;
 
+ 
+      if (!isLoaded || !user || !allPlans) {
+    return <ProfilePageSkeleton />;
+  }
+
+
+ 
   return (
     <div className="min-h-screen py-8">
       <div className="container mx-auto px-4 max-w-6xl">

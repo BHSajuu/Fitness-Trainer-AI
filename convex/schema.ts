@@ -42,12 +42,8 @@ export default defineSchema({
     isActive: v.boolean(),
     userMetadata: v.optional(v.object({
       age: v.string(),
-      height: v.string(),
-      weight: v.string(),
-      injuries: v.string(),
       fitness_goal: v.string(),
       fitness_level: v.string(),
-      dietary_restrictions: v.string(),
     })),
   })
     .index("by_user_id", ["userId"])
@@ -62,7 +58,6 @@ export default defineSchema({
     fitness_level: v.string(),
     age: v.string(),
     workout_days: v.number(),
-    injuries: v.optional(v.string()),
     description: v.string(),
     planId: v.optional(v.string()),
   }).index("by_user_id", ["userId"])

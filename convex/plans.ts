@@ -32,12 +32,8 @@ export const createPlan = mutation({
     isActive: v.boolean(),
     userMetadata: v.optional(v.object({
       age: v.string(),
-      height: v.string(),
-      weight: v.string(),
-      injuries: v.string(),
       fitness_goal: v.string(),
       fitness_level: v.string(),
-      dietary_restrictions: v.string(),
     })),
   },
   handler: async (ctx, args) => {
