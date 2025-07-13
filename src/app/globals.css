@@ -303,3 +303,17 @@
 
 
 
+/* Slider custom styles */
+.slider-container .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.slider-container .slick-slide {
+  height: auto;
+}
+
+.slider-container .slick-slide > div {
+  height: 100%;
+}
+
